@@ -1,128 +1,55 @@
 ﻿<?php
 
-//Домашнее задание
 
-header('Content-Type: text/html; charset=utf-8');
+"
+CREATE TABLE employee(
+id_employee int (11) NOT NULL AUTO_INCREMENT,
+first_name varchar(255) NULL DEFAULT '',
+middle_name varchar(255) NULL DEFAULT '',
+last_name varchar(255) NULL DEFAULT '',
+PRIMARY KEY (`id`)
+);
+";
 
 
-// Если не помещается на 1 строку, то соблюдать правила открытия/закрытия тегов
-$regions = [
-	"Московская область" => ["Москва", "Зеленоград", "Клин"],
-	"Ленинградская область" => ["Санкт-Петербург", "Всеволожск", "Павловск"],
-	"Рязанская область" => ["Рязань", "Ряжск", "Сапожок"]
-];
+"
+INSERT INTO employee (first_name, middle_name, last_name) VALUES ('testuser', 'test', 'test');
+";
 
 
-foreach ($regions as $region_name => $cities) { //неосмысленные имена
-	echo $region_name . '<br>';
+"
+UPDATE employee SET name='testuser1' WHERE id_employee=1;
+DELETE FROM employee WHERE id_employee=5;
+";
 
-	$arrLength = count($regions[$region_name]);
-	for ($i = 0; $i < $arrLength; $i++) { //count внутри цикла
-		if ($i == $arrLength - 1) {
-			echo $cities[$i] . '.' . '<br>'; //не использование $value
-		} else {
-			echo $cities[$i] . ', ';
-		}
-	}
+
+
+//Создать
+$link = mysqli_connect("localhost", "my_user", "my_password", "world");
+
+
+//Закрыть
+mysqli_close($link);
+
+
+//Запрос
+$result = mysqli_query($link, "SELECT * FROM employee WHERE id > 0");
+
+
+// Лечение кодировки
+mysqli_query($link, "SET CHARACTER SET 'utf8'");
+mysqli_set_charset($link, "utf8");
+
+
+//GET
+$epms = [];
+while ($row = mysqli_fetch_assoc($result)) {
+	$epms[] = $row;
 }
 
 
-$a = 0;
-while ($a++ < 100) {
-	$result .= $a; //$result не задан
-}
-
-
-//Подключение файлов с кодом
-//include
-//require
-//include_once
-//require_once
-
-
-$file = fopen("file.txt", "r");
-if (!$file) {
-	echo("Ошибка открытия файла");
-}
-
-echo "Файл открыт";
-fclose($file);
-
-
-//Если не знаем размер файла
-$file = fopen("file.txt", "r");
-if (!$file) {
-	echo("Ошибка открытия файла");
-} else {
-	$buffer = '';
-	while (!feof($file)) {
-		$buffer .= fread($file, 1); //fgets
-	}
-	echo $buffer;
-	fclose($file);
-}
-
-
-//Если размер файла не большой
-$file = fopen("file.txt", "r");
-if (!$file) {
-	echo("Ошибка открытия файла");
-} else {
-	$buffer = fread($file, filesize("file.txt"));
-	echo $buffer;
-	fclose($file);
-}
-
-
-// удобно
-echo file_get_contents("file.txt");
-
-
-// запись файлов
-$filename = "file.txt";
-file_put_contents("file.txt", "Some Data"); //FILE_APPEND
-
-
-//шаблонизатор
-function render($file, $variables = [])
-{
-	if (!is_file($file)) {
-		echo 'Template file "' . $file . '" not found';
-		exit();
-	}
-
-	if (filesize($file) === 0) {
-		echo 'Template file "' . $file . '" is empty';
-		exit();
-	}
-
-
-	$templateContent = file_get_contents($file);
-
-	if (empty($variables)) {
-		return $templateContent;
-	}
-
-	foreach ($variables as $key => $value) {
-		if (empty($value) || !is_string($value)) {
-			continue;
-		}
-
-		$key = '{{' . strtoupper($key) . '}}';
-
-		$templateContent = str_replace($key, $value, $templateContent);
-	}
-
-	return $templateContent;
-}
-
-
-echo render('../templates/index.tpl', [
-	'title' => 'Мой супер сайт',
-	'header' => 'Добро пожаловать',
-	'content' => 'Это мой первый сайт, не судите строго',
-	'footer' => date('Y')
-]);
-
-scandir('./');
-
+//mysql_num_rows – число строк, содержащееся в результате выборки данных;
+// mysql_affected_rows – число строк, затронутых последним запросом INSERT, UPDATE или DELETE;
+// mysql_error – сообщение о последней ошибке, возникшей в ходе запроса;
+// mysql_insert_id – id записи, добавленной последним запросом INSERT;
+// mysql_close
