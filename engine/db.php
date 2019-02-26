@@ -1,20 +1,8 @@
 ﻿<?php
 
-function showProduct($id)
-{
-	$result = getAssocResult("SELECT * FROM `products` WHERE `id` = $id");
-
-	return isset($result[0]) ? $result[0] : null;
-}
-
-function getProducts()
-{
-	return getAssocResult("SELECT * FROM `products`");
-}
-
 function createConnection()
 {
-	$db = mysqli_connect(HOST, USER, PASS, DB);
+	$db = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 	mysqli_query($db, "SET CHARACTER SET 'utf8'");
 	return $db;
 }
@@ -39,7 +27,17 @@ function getAssocResult($sql)
 	while ($row = mysqli_fetch_assoc($result)) {
 		$array_result[] = $row;
 	}
+
 	mysqli_close($db);
 	return $array_result;
+}
+
+function show($sql)
+{
+	$result = getAssocResult($sql);
+	if(empty($result)) {
+		return null;
+	}
+	return $result[0];
 }
 
