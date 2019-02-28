@@ -18,4 +18,5 @@ define('DB_NAME', 'geek_brains_shop');
 require_once ENGINE_DIR . 'functions.php';
 require_once ENGINE_DIR . 'db.php';
 require_once ENGINE_DIR . 'news.php';
+require_once ENGINE_DIR . 'gallery.php';
 

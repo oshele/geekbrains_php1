@@ -8,6 +8,7 @@
 	<header>
 		<ul>
 			<li><a href="/">Главная</a></li>
+			<li><a href="/news.php">Новости</a></li>
 			<li><a href="/contacts.php">Контакты</a></li>
 		</ul>
 	</header>
