@@ -23,3 +23,15 @@ function renderNews($news)
 	}
 	return $newsContent;
 }
+
+function insertItem($title, $content)
+{
+
+	$db = createConnection();
+	$title = escapeString($db, $title);
+	$content = escapeString($db, $content);
+
+	$sql = "INSERT INTO `news`(`title`, `content`) VALUES ('$title', '$content')";
+
+	return execQuery($sql, $db);
+}
