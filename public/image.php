@@ -9,6 +9,7 @@ if(!$id) {
 	exit();
 }
 
+//обезопашиваемся от инъекций
 $id = (int)$id;
 
 echo render(TEMPLATES_DIR . 'index.tpl', [

@@ -2,18 +2,20 @@
 
 require_once '../config/config.php';
 
-
-
+//?? - заменяет isset($a) ? $a : '';
 $author = $_POST['author'] ?? '';
-$content = $_POST['content'] ?? '';
+$comment = $_POST['comment'] ?? '';
 
-if($author && $content) {
-	$result = insertReview($author, $content);
+//если есть и автор и комментарий
+if($author && $comment) {
+	//пытаемся вставить отзыв
+	$result = insertReview($author, $comment);
 
+	//в случае успеха обнуляем $author и $comment
 	if ($result) {
 		echo 'Отзыв добавлен';
 		$author = '';
-		$content = '';
+		$comment = '';
 	} else {
 		echo 'Произошла ошибка';
 	}
@@ -21,8 +23,10 @@ if($author && $content) {
 
 echo '<hr>';
 
+//Получаем список отзывов
 $reviews = getReviews();
 
+//выводим отзывы на экран
 foreach ($reviews as $review) {
 	echo '<div>';
 	echo "<div>{$review['author']}</div>";
@@ -36,11 +40,13 @@ foreach ($reviews as $review) {
 <hr>
 <form action="" method="POST">
 	<div>
+		<!-- атрибут value позволяет выставить значение по умолчанию -->
 		Title: <input type="text" name="author" value="<?= $author ?>">
 	</div>
 	<div>
-		Content:
-		<textarea name="content" cols="30" rows="10"><?= $content ?></textarea>
+		comment:
+		<!-- для textarea значение по умолчанию выглядит так -->
+		<textarea name="comment" cols="30" rows="10"><?= $comment ?></textarea>
 	</div>
 	<div>
 		<input type="submit">
