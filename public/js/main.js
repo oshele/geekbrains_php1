@@ -3,18 +3,23 @@
 // 	data: {a: 1}
 // });
 
-
+//Функция AJAX авторизации
 function login() {
+	//Получаем input'ы логина и пароля
 	const $login_input = $('[name="login"]');
 	const $password_input = $('[name="password"]');
 
+	//Получаем значение login и password
 	const login = $login_input.val();
 	const password = $password_input.val();
 
-	const $error_field = $('.errors');
+	//Инициализируем поле для сообщений
+	const $message_field = $('.message');
 
-	console.log($error_field);
-
+	//Вызываем функцию jQuery AJAX с методом POST
+	//Передаем туда url где будет обрабатваться API
+	//И data которое будет помещена в $_POST
+	//success - вызывается при успешном ответе от сервера
 	$.post({
 		url: '/api.php',
 		data: {
@@ -25,12 +30,21 @@ function login() {
 			}
 		},
 		success: function (data) {
-			data = JSON.parse(data);
+			//data приходят те данные, который прислал на сервер
 
-			if(data.error.length) {
-				$error_field.text(data.error);
-			} else {
+
+			//Вариант с json
+			// if(data.error) {
+			// 	$message_field.text(data.error_text);
+			// } else {
+			// 	location.reload();
+			// }
+
+			//Вариан без json
+			if (data === 'OK') {
 				location.reload();
+			} else {
+				$message_field.text(data);
 			}
 		}
 	});
