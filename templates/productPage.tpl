@@ -1,6 +1,8 @@
 <div>
 	<a href="updateProduct.php?id={{ID}}">Редактировать</a>
 	<a href="deleteProduct.php?id={{ID}}">Удалить</a>
+
+	<a class="btn" onclick="addToCart({{ID}})">Купить</a>
 </div>
 <hr>
 <div>

@@ -89,3 +89,40 @@ if ($_POST['apiMethod'] === 'login') {
 		error('Неверная пара логин-пароль');
 	}
 }
+
+//Обработка метода addToCart
+if($_POST['apiMethod'] === 'addToCart') {
+	$id = $_POST['postData']['id'] ?? 0;
+	if(!$id) {
+		error('ID не передан');
+	}
+
+	//Получаем данные корзины
+	$cart = $_COOKIE['cart'] ?? [];
+
+	//если в корзине товара еще нет, то получаем 0
+	$count = $cart[$id] ?? 0;
+	//увеличиваем количество в корзине
+	$count++;
+
+	//устанавливаем новое куки
+	setcookie("cart[$id]", $count);
+	success();
+}
+
+//Обработка метода removeFromCart
+if($_POST['apiMethod'] === 'removeFromCart') {
+	$id = $_POST['postData']['id'] ?? 0;
+	if(!$id) {
+		error('ID не передан');
+	}
+
+	//удаляем товар из корзины
+	setcookie("cart[$id]", null);
+	success();
+}
+
+
+
+
+error('Неизвестный метод');

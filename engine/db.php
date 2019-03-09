@@ -98,3 +98,22 @@ function escapeString($db, $string)
 	);
 }
 
+
+/**
+ * Вставляет строку и возвращается вставленный id
+ * @param string $sql
+ * @return int
+ */
+function insert($sql)
+{
+	//создаем соединение с БД
+	$db = createConnection();
+
+	//выполняем запрос
+	mysqli_query($db, $sql);
+	$id = mysqli_insert_id($db);
+
+	//закрываем соединение
+	mysqli_close($db);
+	return $id;
+}
