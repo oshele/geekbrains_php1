@@ -1,1 +1,3 @@
-<div>Our site: https://geekbrains.ru</div>
+<div>
+	Our site: https://geekbrains.ru
+</div>

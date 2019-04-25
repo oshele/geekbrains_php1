@@ -16,12 +16,8 @@ function render($file, $variables = [])
 
 	$templateContent = file_get_contents($file);
 
-	if (empty($variables)) {
-		return $templateContent;
-	}
-
 	foreach ($variables as $key => $value) {
-		if (empty($value) || !is_string($value)) {
+		if (!is_string($value)) {
 			continue;
 		}
 
@@ -34,16 +30,3 @@ function render($file, $variables = [])
 }
 
 
-function createGallery()
-{
-	$result = '';
-	$images = scandir(WWW_DIR . IMG_DIR);
-	foreach ($images as $image) {
-		if(is_file(IMG_DIR . $image)) {
-			$result .= render(TEMPLATES_DIR . 'galleryItem.tpl', [
-				'src' => IMG_DIR . $image
-			]);
-		}
-	}
-	return $result;
-}

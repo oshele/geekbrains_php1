@@ -1,16 +1,19 @@
 ﻿<?php
 
 //Домашнее задание
-
 header('Content-Type: text/html; charset=utf-8');
 
 
-// Если не помещается на 1 строку, то соблюдать правила открытия/закрытия тегов
+
 $regions = [
 	"Московская область" => ["Москва", "Зеленоград", "Клин"],
 	"Ленинградская область" => ["Санкт-Петербург", "Всеволожск", "Павловск"],
 	"Рязанская область" => ["Рязань", "Ряжск", "Сапожок"]
 ];
+
+
+
+
 
 
 foreach ($regions as $region_name => $cities) { //неосмысленные имена
@@ -31,6 +34,77 @@ $a = 0;
 while ($a++ < 100) {
 	$result .= $a; //$result не задан
 }
+
+
+
+
+
+
+
+
+function generateMenu($items)
+{
+	echo '<ul>';
+	foreach ($items as $item) {
+		echo '<li>';
+		echo '<a href="' . $item['link'] . '">' . $item['title'] . '</a>';
+		if(isset($item['children'])) {
+			generateMenu($item['children']);
+		}
+		echo "</li>";
+	}
+	echo '</ul>';
+}
+
+
+
+$menu = [
+	[
+		'title' => 'Главная',
+		'link' => '/'
+	],
+	[
+		'title' => 'Контакты',
+		'link' => '/contancts'
+	],
+	[
+		'title' => 'Статьи',
+		'link' => '/articles',
+		'children' => [
+			[
+				'title' => 'Котики',
+				'link' => '/articles/cats'
+			],
+			[
+				'title' => 'Собачки',
+				'link' => '/articles/dogs',
+				'children' => [
+					[
+						'title' => 'Доберманы',
+						'link' => '/articles/dogs/dobermani'
+					],
+					[
+						'title' => 'Корги',
+						'link' => '/articles/dogs/corgi',
+						'children' => [/* */]
+					]
+				]
+			]
+		]
+	]
+];
+
+
+generateMenu($menu);
+
+
+
+
+
+
+
+
+
 
 
 //Подключение файлов с кодом
