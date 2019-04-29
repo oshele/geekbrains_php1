@@ -11,6 +11,17 @@ if(!$id) {
 	exit();
 }
 
-//$id = 1;
+$sql = "SELECT * FROM news WHERE id = $id";
 
-var_dump(showGalleryItem($id));
+$newsItem = show($sql);
+
+if(!$newsItem) {
+	echo "404";
+	die;
+}
+
+echo render(TEMPLATES_DIR . 'index.tpl', [
+	'title' => $newsItem['title'],
+	'content' => $newsItem['content'],
+	'h1' => $newsItem['title']
+]);

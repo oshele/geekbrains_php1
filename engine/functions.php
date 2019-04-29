@@ -16,17 +16,12 @@ function render($file, $variables = [])
 
 	$templateContent = file_get_contents($file);
 
-	if (empty($variables)) {
-		return $templateContent;
-	}
-
 	foreach ($variables as $key => $value) {
-		if (empty($value) || !is_string($value)) {
+		if (!is_string($value)) {
 			continue;
 		}
 
 		$key = '{{' . strtoupper($key) . '}}';
-
 		$templateContent = str_replace($key, $value, $templateContent);
 	}
 
@@ -34,15 +29,16 @@ function render($file, $variables = [])
 }
 
 
-function createGallery()
-{
+function createGallery($imgDir) {
 	$result = '';
-	$images = scandir(WWW_DIR . IMG_DIR);
+
+	$images = scandir(WWW_DIR . $imgDir);
+
 
 	foreach ($images as $image) {
-		if(is_file(WWW_DIR . IMG_DIR . $image)) {
+		if(is_file(WWW_DIR . $imgDir . $image)) {
 			$result .= render(TEMPLATES_DIR . 'galleryItem.tpl', [
-				'src' => IMG_DIR . $image
+				'src' => $imgDir . $image
 			]);
 		}
 	}

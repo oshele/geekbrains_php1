@@ -48,8 +48,8 @@ while ($row = mysqli_fetch_assoc($result)) {
 }
 
 
-//mysql_num_rows – число строк, содержащееся в результате выборки данных;
-// mysql_affected_rows – число строк, затронутых последним запросом INSERT, UPDATE или DELETE;
-// mysql_error – сообщение о последней ошибке, возникшей в ходе запроса;
-// mysql_insert_id – id записи, добавленной последним запросом INSERT;
-// mysql_close
+// mysqli_num_rows – число строк, содержащееся в результате выборки данных;
+// mysqli_affected_rows – число строк, затронутых последним запросом INSERT, UPDATE или DELETE;
+// mysqli_error – сообщение о последней ошибке, возникшей в ходе запроса;
+// mysqli_insert_id – id записи, добавленной последним запросом INSERT;
+// mysqli_close
