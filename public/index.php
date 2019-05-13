@@ -10,3 +10,4 @@ echo render(TEMPLATES_DIR . 'index.tpl', [
 	'h1' => 'Привет, Андрей',
 	'content' => 'Добро пожаловать, на мой чудо сайт'
 ]);
+

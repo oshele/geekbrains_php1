@@ -30,3 +30,26 @@ function render($file, $variables = [])
 }
 
 
+function renderGalleryItem($fileName,$file){
+	$galleryItem = file_get_contents($file);
+	$src = "/img/" . $fileName;
+
+	$galleryItem = str_replace('{{SRC}}', "$src", $galleryItem);
+	return $galleryItem;
+}
+
+
+function renderGallery($directory, $file){
+	
+	$files = scandir($directory);
+	$content = "";
+
+	foreach ($files as $key => $fileName){
+		if($key < 2){
+			continue;
+		}
+		$content = $content . renderGalleryItem($fileName, $file);
+		
+	}
+	return $content;
+}
