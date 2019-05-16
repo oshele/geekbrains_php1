@@ -19,12 +19,16 @@ if(!$galleryItem) {
 	echo "404";
 	die;
 } 
+increaseViews($id, $galleryItem);
+
+$views = $galleryItem['views'];
+$views++;
 
 echo render(TEMPLATES_DIR . 'openedImage.tpl',[
     'src' => $galleryItem['url'],
     'image_title' => $galleryItem['title'],
-    'views' => $galleryItem['views'],
+    'views' => "$views",
 ]);
 
-increaseViews($id, $galleryItem);
+
 

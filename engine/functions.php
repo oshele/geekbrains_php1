@@ -44,3 +44,4 @@ function createGallery($imgDir) {
 	}
 	return $result;
 }
+

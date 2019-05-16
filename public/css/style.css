@@ -1,0 +1,103 @@
+.menu {
+    list-style-type: none;
+    display: flex;
+    align-items: flex-end;
+}
+
+.menu li {
+    height: 30px;
+
+}
+
+.menu a {
+    text-decoration: none;
+    color: rgb(15, 11, 11);
+    font-size: 18px;
+    text-transform: uppercase;
+    margin: 10px;
+    font-weight: 900;
+}
+
+.menu a:hover {
+    color: rgb(241, 133, 38);
+    border-bottom: 1px solid rgb(241, 133, 38);
+}
+
+.catalog-item {
+    background-color: white;
+    width: 250px;
+    height: 280px;
+    margin: 15px;
+    box-sizing: border-box;
+    border: 1px solid grey;
+}
+
+.catalog-item:hover {
+    box-shadow: 0px 0px 10px 0.15px rgba(0, 0, 0, 0.5);
+}
+
+.catalog-item a {
+    text-decoration: none;
+    color: black;
+    font-size: 16px;
+    display: block;
+    width: 250px;
+    height: 280px;
+    padding: 25px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.catalog-item img {
+    width: 200px;
+    float: left;
+}
+
+.product-top {
+    display: flex;
+    padding: 15px;
+}
+
+.product-image {
+    margin-right: 20px;
+}
+
+.description > img {
+    width: 350px;
+    outline: 5px outset lightgrey;
+}
+
+.description > img:hover {
+    outline: none;
+}
+
+.product-description {
+    position: relative;
+
+}
+
+.buy {
+    text-decoration: none;
+    display: block;
+    height: 35px;
+    width: 120px;
+    color: black;
+    font-size: 20px;
+    background-color: white;
+    text-align: center;
+    line-height: 35px;
+    border: 1px solid black;
+    border-radius: 20px;
+    box-shadow: 1px 2px 3px 0.15px rgba(0, 0, 0, 0.5);
+    margin: 30px auto;
+}
+
+.buy:hover {
+    background-color: floralwhite;
+}
+
+.buy:active {
+    box-shadow: 0px 0px 3px 0.15px;
+    position: relative;
+    top: 2px;
+}
