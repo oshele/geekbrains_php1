@@ -1,5 +1,4 @@
 ﻿<?php
-
 function createConnection()
 {
 	$db = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
@@ -35,9 +34,8 @@ function getAssocResult($sql)
 function show($sql)
 {
 	$result = getAssocResult($sql);
-	if(empty($result)) {
+	if (empty($result)) {
 		return null;
 	}
 	return $result[0];
 }
-

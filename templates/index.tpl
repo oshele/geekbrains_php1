@@ -13,6 +13,8 @@
 			<li><a href="/reviews.php">Комментарии</a></li>
 			<li><a href="/calc.php">Калькулятор</a></li>
 			<li><a href="/catalog.php">Каталог товаров</a></li>
+			<li><a href="/login.php">Войти</a></li>
+
 		</ul>
 	</header>
 	<h1>{{H1}}</h1>
