@@ -45,3 +45,20 @@ function createGallery($imgDir) {
 	return $result;
 }
 
+function loadFile($fileName, $path){
+	if(empty($_FILES[$fileName])|| $_FILES[$fileName]['erroe']){
+		return 0;
+	}
+
+	$file = $_FILES[$fileName];
+	$uploadDir = WWW_DIR . $path;
+	$uploadfile = $uploadDir . basename($file['name']);
+
+	if(move_uploaded_file($file['tmp_name'], $uploadfile)){
+		return $path . basename($file['name']);
+	}else{
+		return 0;
+	}
+
+}
+

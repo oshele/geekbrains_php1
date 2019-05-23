@@ -24,5 +24,4 @@ require_once ENGINE_DIR . 'gallery.php';
 require_once ENGINE_DIR . 'reviews.php';
 require_once ENGINE_DIR . 'calc.php';
 require_once ENGINE_DIR . 'catalog.php';
-require_once ENGINE_DIR . 'login.php';
 

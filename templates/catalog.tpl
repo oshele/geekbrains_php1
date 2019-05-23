@@ -1,3 +1,3 @@
 <div class="catalog-item" >
-    <a href="/catalogItem.php?id={{ID}}"><img src="{{IMAGE}}"  alt="photo" ><br>{{NAME}}</a>
+    <a href="/products/catalogItem.php?id={{ID}}"><img src="../{{IMAGE}}"  alt="photo" ><br>{{NAME}}</a>
 </div>

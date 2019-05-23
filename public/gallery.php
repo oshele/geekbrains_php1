@@ -10,7 +10,8 @@ $gallery = renderGallery($images);
 echo render(TEMPLATES_DIR . 'index.tpl', [
 	'title' => 'Галерея',
 	'h1' => 'Лучшие картиночки',
-	'content' => $gallery
+	'content' => $gallery,
+	'style' => 'css/style.css',
 ]);
 
 

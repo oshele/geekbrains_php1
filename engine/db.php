@@ -1,4 +1,5 @@
-﻿<?php
+<?php
+
 function createConnection()
 {
 	$db = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
@@ -6,9 +7,12 @@ function createConnection()
 	return $db;
 }
 
-function execQuery($sql)
+function execQuery($sql, $db = null)
 {
-	$db = createConnection();
+	if(!$db){
+		$db = createConnection();
+	}
+	
 
 	$result = mysqli_query($db, $sql);
 
@@ -38,4 +42,11 @@ function show($sql)
 		return null;
 	}
 	return $result[0];
+}
+
+function escapeString($db, $string){
+	return mysqli_real_escape_string(
+		$db,
+		(string)htmlspecialchars(strip_tags($string))
+	);
 }

@@ -26,16 +26,7 @@ if ($author && $text) {
 	} else {
 		$messages .= "Что-то пошло не так";
 	}
-} else {
-	if (!$author) {
-		$messages .= "Введите имя<br>";
-		$author = $review['author'];
-	}
-	if (!$text) {
-		$messages .= "Добавьте Комментарий<br>";
-		$text = $review['text'];
-	}
-}
+} 
 ?>
 
 <div class="messages">

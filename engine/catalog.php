@@ -27,42 +27,55 @@ function renderProducts(){
     return $result;
 }
 
-// function createReview($author, $text){
+function createProduct($name, $description, $price, $file){
 
-//     $link = createConnection();
+    if($file['name']){
+        $fileName = loadFile('image', 'img/products/');
+    }
 
-//     $author = mysqli_real_escape_string($link, (string)htmlspecialchars(strip_tags($author)));
-// 	$text = mysqli_real_escape_string($link, (string)htmlspecialchars(strip_tags($text)));
+    $link = createConnection();
 
-//     $sql = "INSERT INTO `reviews`(`author`, `text`) VALUES ('$author', '$text')";
+    $name = escapeString($link, $name);
+    $description = escapeString($link, $description);
+    $price = (float)$price;
+
+    $sql = $fileName
+    ? "INSERT INTO `products`(`name`, `description`, `price`, `image`) VALUES ('$name', '$description', '$price', '$fileName')"
+    : "INSERT INTO `products`(`name`, `description`, `price`) VALUES ('$name', '$description', '$price')";
     
-//     $result = mysqli_query($link, $sql);
-//     mysqli_close($link);
-//     return $result;
+    return execQuery($sql, $link);
 
-// }
+}
 
-// function updateReview($id, $author, $text)
-// {
-// 	$link = createConnection();
+function updateProduct($name, $description, $price, $file, $id){
 
-// 	$id = (int)$id;
-// 	$author = mysqli_real_escape_string($link, (string)htmlspecialchars(strip_tags($author)));
-// 	$text = mysqli_real_escape_string($link, (string)htmlspecialchars(strip_tags($text)));
+    if($file['name']){
+        $fileName = loadFile('image', 'img/products/');
+    }
 
-// 	$sql = "UPDATE `reviews` SET `author`='$author',`text`='$text' WHERE `id` = $id";
+    $link = createConnection();
 
-// 	$result = mysqli_query($link, $sql);
+    $name = escapeString($link, $name);
+    $description = escapeString($link, $description);
+    $price = (float)$price;
 
-// 	mysqli_close($link);
-// 	return $result;
-// }
+    $sql = $fileName
+    ? "UPDATE `products` SET `name` = '$name', `description` ='$description', `price` = '$price', `image` = '$fileName' WHERE `id` = $id"
+    : "UPDATE `products` SET `name` = '$name', `description` ='$description', `price` = '$price' WHERE `id` = $id";
+    
+    return execQuery($sql, $link);
 
-// function deleteReview($id)
-// {
-// 	$sql = "DELETE FROM `reviews` WHERE `id` = $id";
+}
 
-// 	$result = execQuery($sql);
 
-// 	return $result;
-// }
+
+function deleteProduct($id, $image)
+{
+    $path = WWW_DIR . $image;
+    unlink("$path");
+	$sql = "DELETE FROM `products` WHERE `id` = $id";
+
+	$result = execQuery($sql);
+
+	return $result;
+}

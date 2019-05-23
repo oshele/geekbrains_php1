@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>{{TITLE}}</title>
-	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="{{STYLE}}">
 </head>
 <body>
 	<header>
@@ -12,8 +12,8 @@
 			<li><a href="/gallery.php">Галерея</a></li>
 			<li><a href="/reviews.php">Комментарии</a></li>
 			<li><a href="/calc.php">Калькулятор</a></li>
-			<li><a href="/catalog.php">Каталог товаров</a></li>
-			<li><a href="/login.php">Войти</a></li>
+			<li><a href="/products/">Каталог товаров</a></li>
+			<li><a href="/login.php">Вход/Регистрация</a></li>
 
 		</ul>
 	</header>

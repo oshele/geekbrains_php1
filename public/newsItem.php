@@ -23,5 +23,6 @@ if(!$newsItem) {
 echo render(TEMPLATES_DIR . 'index.tpl', [
 	'title' => $newsItem['title'],
 	'content' => $newsItem['content'],
-	'h1' => $newsItem['title']
+	'h1' => $newsItem['title'],
+	'style' => 'css/style.css',
 ]);

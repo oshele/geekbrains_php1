@@ -30,6 +30,7 @@ echo render(TEMPLATES_DIR . 'index.tpl', [
 	'title' => 'Комментарии',
 	'h1' => 'Комментарии',
 	'content' => $reviewsContent,
+	'style' => 'css/style.css',
 ]);
 
 ?>
