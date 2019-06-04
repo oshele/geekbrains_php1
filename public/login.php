@@ -3,63 +3,63 @@
 require_once __DIR__ . '/../config/config.php';
 
 
-$login = $_POST['login'] ?? '';
-$password = $_POST['password'] ?? '';
-$newName = $_POST['newName'] ?? '';
-$newLogin = $_POST['newLogin'] ?? '';
-$newPassword = $_POST['newPassword'] ?? '';
+// $login = $_POST['login'] ?? '';
+// $password = $_POST['password'] ?? '';
+// $newName = $_POST['newName'] ?? '';
+// $newLogin = $_POST['newLogin'] ?? '';
+// $newPassword = $_POST['newPassword'] ?? '';
 
 if($_SESSION['login']){
     header('Location: /userAccount.php');
 }
 
 
-if($login && $password) {
-    $password = md5($password);
+// if($login && $password) {
+//     $password = md5($password);
 
-    $sql = "SELECT * FROM `users` WHERE `login` = '$login' AND `password` = '$password'";
-    $user = show($sql);
+//     $sql = "SELECT * FROM `users` WHERE `login` = '$login' AND `password` = '$password'";
+//     $user = show($sql);
   
-    if($user){
-        $_SESSION['login'] = $user;
-        header('Location: /userAccount.php');   
-    }else{
-        echo 'Неверный логин или пароль';
-    }
-}
+//     if($user){
+//         $_SESSION['login'] = $user;
+//         header('Location: /userAccount.php');   
+//     }else{
+//         echo 'Неверный логин или пароль';
+//     }
+// }
 
-if($newLogin && $newPassword && $newName) {
+// if($newLogin && $newPassword && $newName) {
 
-    $newPassword = md5($newPassword);
+//     $newPassword = md5($newPassword);
 
-    $sql = "SELECT * FROM `users` WHERE `login` = '$newLogin' AND `password` = '$newPassword'";
-    $user = show($sql);
+//     $sql = "SELECT * FROM `users` WHERE `login` = '$newLogin' AND `password` = '$newPassword'";
+//     $user = show($sql);
 
       
-    if(!$user){
-        $db = createConnection();
-        $newLogin = escapeString($db, $newLogin);
-        $newName = escapeString($db, $newName);
+//     if(!$user){
+//         $db = createConnection();
+//         $newLogin = escapeString($db, $newLogin);
+//         $newName = escapeString($db, $newName);
 
-        $sql = "INSERT INTO `users`(`name`, `login`, `password`) VALUES ('$newName', '$newLogin', '$newPassword')";
+//         $sql = "INSERT INTO `users`(`name`, `login`, `password`) VALUES ('$newName', '$newLogin', '$newPassword')";
         
-        $result = execQuery($sql, $db);
+//         $result = execQuery($sql, $db);
 
-        if($result){
-            $sql = "SELECT * FROM `users` WHERE `login` = '$newLogin' AND `password` = '$newPassword'";
-            $user = show($sql);
-            $_SESSION['login'] = $user;
-            header('Location: /userAccount.php');
-        }else{
-            echo 'Ошибка при регистрации';
-        }
+//         if($result){
+//             $sql = "SELECT * FROM `users` WHERE `login` = '$newLogin' AND `password` = '$newPassword'";
+//             $user = show($sql);
+//             $_SESSION['login'] = $user;
+//             header('Location: /userAccount.php');
+//         }else{
+//             echo 'Ошибка при регистрации';
+//         }
     
-    }else{
-        echo 'Пользователь с такими данными существует';
-    }
-}else {
-    echo 'Недостаточно данных';
-}
+//     }else{
+//         echo 'Пользователь с такими данными существует';
+//     }
+// }else {
+//     echo 'Недостаточно данных';
+// }
 
 
 
