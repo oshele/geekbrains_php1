@@ -72,3 +72,22 @@ if ($_POST['apiMethod'] === 'register') {
 		error('Пользователь с такими данными существует');
 	}
 }
+
+//Обработка метода addToCart
+if($_POST['apiMethod'] === 'addToCart'){
+	$id = $_POST['postData']['id'] ?? 0;
+
+	if(!$id){
+		error('ID не передан');
+	}
+//данные корзины из кук
+$cart = $_COOKIE['cart'] ?? [];
+
+//если товара нет в корзине, то 0
+$count = $cart[$id] ?? 0;
+$count++; //увеличиваем количество товара
+
+//устанавливаем новое куки
+setcookie("cart[$id]", $count);
+success();
+}

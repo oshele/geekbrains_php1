@@ -51,3 +51,27 @@ function register() {
         }
     });
 }
+
+function addToCart(id) {
+    const $message_field = $('.message');
+
+    console.log(id);
+
+    $.post({
+        url: '/api.php',
+        data: {
+            apiMethod: 'addToCart',
+            postData: {
+                id: id
+            }
+        },
+        success: function (data) {
+            if (data === 'OK') {
+                $message_field.text('Товар добавлен в корзину');
+                setTimeout(() => $message_field.text(''), 3000);
+            } else {
+                alert(data);
+            }
+        }
+    });
+}

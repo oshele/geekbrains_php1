@@ -16,6 +16,13 @@ function showProduct($id){
     return $product[0];
 }
 
+function showProducts($ids){
+
+    $ids = implode(',', $ids);
+    $sql = "SELECT * FROM products WHERE id IN ($ids)";
+    return getAssocResult($sql);
+}
+
 function renderProducts(){
 
     $result = "";
@@ -78,4 +85,38 @@ function deleteProduct($id, $image)
 	$result = execQuery($sql);
 
 	return $result;
+}
+
+function renderProductsCart($cart){
+    if(empty($cart)){
+        return "Корзина пуста";
+    }
+
+    $ids = array_keys($cart);
+    
+    $products = showProducts($ids);
+    
+    $content = '';
+    $cartSum = 0;
+
+    foreach($products as $product){
+        $price = $product['price'];
+        $count = $cart[$product['id']];
+        $productSum = $price * $count;
+        var_dump($productSum);
+        $content .= render(TEMPLATES_DIR . 'cartListItem.tpl', [
+           'id'=> $product['id'],
+           'name' => $product['name'],
+           'price' => $product['price'],
+           'count' => $cart[$product['id']],
+           'productSum' => "$productSum",
+       ]);
+       $cartSum += $productSum;
+    }
+
+    return render(TEMPLATES_DIR . 'cartList.tpl', [
+        'sum' => "$cartSum",
+        'content' => $content
+    ]);
+
 }

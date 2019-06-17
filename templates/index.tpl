@@ -16,6 +16,7 @@
 			<li><a href="/login.php">Вход/Регистрация</a></li>
 
 		</ul>
+		<a href="/products/cart.php" class = "buy right">Оформить заказ</a>
 	</header>
 	<h1>{{H1}}</h1>
 	<div class= "content">{{CONTENT}}</div>
