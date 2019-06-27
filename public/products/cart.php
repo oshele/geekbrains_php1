@@ -10,5 +10,6 @@ echo render(TEMPLATES_DIR . 'index.tpl', [
 	'content' => renderProductsCart($_COOKIE['cart'] ?? []),
 	'button' => empty($_SESSION['login'])
 		? '<a href="/login.php" class = "buy right">Войти</a>'
-		: '<a href="/products/createOrder.php" class="buy right">Оформить заказ</a>'
+        : '<a href="/products/createOrder.php" class="buy right">Оформить заказ</a>',
+    'style' => '../css/style.css'
 ]);

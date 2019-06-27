@@ -3,5 +3,5 @@
 	<td>{{PRICE}}</td>
 	<td>{{COUNT}}</td>
 	<td>{{PRODUCTSUM}}</td>
-	<td><span class="btn" onclick="removeFromCart({{ID}})">Удалить</span></td>
+	<td><span class="buy delete" onclick="removeFromCart({{ID}})">Удалить</span></td>
 </tr>

@@ -103,7 +103,6 @@ function renderProductsCart($cart){
         $price = $product['price'];
         $count = $cart[$product['id']];
         $productSum = $price * $count;
-        var_dump($productSum);
         $content .= render(TEMPLATES_DIR . 'cartListItem.tpl', [
            'id'=> $product['id'],
            'name' => $product['name'],

@@ -70,12 +70,12 @@ header {
     margin-right: 20px;
 }
 
-.description > img {
+.description>img {
     width: 350px;
     outline: 5px outset lightgrey;
 }
 
-.description > img:hover {
+.description>img:hover {
     outline: none;
 }
 
@@ -104,6 +104,10 @@ header {
     width: 200px;
 }
 
+.buy.delete {
+    margin: 10px auto;
+}
+
 .buy:hover {
     background-color: floralwhite;
 }
@@ -112,4 +116,35 @@ header {
     box-shadow: 0px 0px 3px 0.15px;
     position: relative;
     top: 2px;
+}
+
+table {
+    border-spacing: 0 10px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+}
+
+thead td {
+    padding: 10px 20px;
+    background: #56433D;
+    color: #F9C941;
+    border-right: 2px solid;
+    font-size: 0.9em;
+    height: 60px;
+}
+
+
+td {
+    vertical-align: middle;
+    padding: 10px;
+    font-size: 14px;
+    text-align: center;
+    border-top: 2px solid #56433D;
+    border-bottom: 2px solid #56433D;
+    border-right: 2px solid #56433D;
+}
+
+td:first-child {
+    border-left: 2px solid #56433D;
+    text-align: left;
 }
